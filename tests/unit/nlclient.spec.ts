@@ -172,7 +172,7 @@ describe('NLClient', () => {
         })
 
         describe('on emotional traits', () => {
-            const configuration = { taxonomy: "emotional_traits", language: Language.EN}
+            const configuration = { taxonomy: "emotional-traits", language: Language.EN}
             beforeEach(() => {
                 mockCategorizeApi.categorizeEmotionalTraitsLanguagePost
                     .mockResolvedValue({
@@ -196,7 +196,7 @@ describe('NLClient', () => {
             })
 
             test('should throw exception with not en or de language', () => {
-                const wrongConfiguration = {taxonomy: "emotional_traits", language: Language.IT}
+                const wrongConfiguration = {taxonomy: "emotional-traits", language: Language.IT}
 
                 expect(() => {
                     client.categorize("text", wrongConfiguration)
@@ -429,7 +429,7 @@ describe('NLClient', () => {
                     statusText: "SUCCESS"
                 } as any)
 
-            result = client.context()
+            result = client.contexts()
         })
 
         test('should call contextsGet', () => {
