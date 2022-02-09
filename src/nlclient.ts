@@ -141,7 +141,7 @@ export class NLClient{
     }
 
     /**
-     * Context returns information about the context that can be used for document analysis
+     * Contexts returns information about the context that can be used for document analysis
      *
      * @summary Contexts information
      * @returns {ContextsResponse} Return information about the contexts

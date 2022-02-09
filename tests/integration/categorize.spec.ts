@@ -18,7 +18,7 @@ describe('Categorize', () => {
         const text = "Michael Jordan was one of the best basketball players of all time. Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half."
 
         test('should have success response with iptc taxonomy', () => {
-            let configuration: CategorizerConfig = {
+            const configuration: CategorizerConfig = {
                 taxonomy: "iptc",
                 language: Language.EN
             }
@@ -33,7 +33,7 @@ describe('Categorize', () => {
         const text = "Last year I moved from San Francisco to New York."
 
         test('should have success response with geotax taxonomy', () => {
-            let configuration: CategorizerConfig = {
+            const configuration: CategorizerConfig = {
                 taxonomy: "geotax",
                 language: Language.EN
             }
@@ -48,7 +48,7 @@ describe('Categorize', () => {
         const text = successEmotionalTraitsResponse.data.content
 
         test('should have success response with emotional traits taxonomy', () => {
-            let configuration: CategorizerConfig = {
+            const configuration: CategorizerConfig = {
                 taxonomy: "emotional-traits",
                 language: Language.EN
             }
@@ -63,7 +63,7 @@ describe('Categorize', () => {
         const text = "Michael Jordan was one of the best basketball players of all time. Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half."
 
         test('should failed with wrong taxonomy', () => {
-            let configuration: CategorizerConfig = {
+            const configuration: CategorizerConfig = {
                 taxonomy: "wrong",
                 language: Language.EN
             }
@@ -84,7 +84,7 @@ describe('Categorize', () => {
 
     describe('Category tree for a given taxonomy', () => {
         test('should have success response with iptc taxonomy', () => {
-            let configuration: CategorizerConfig = {
+            const configuration: CategorizerConfig = {
                 taxonomy: "iptc",
                 language: Language.EN
             }
@@ -95,7 +95,7 @@ describe('Categorize', () => {
         })
 
         test('should have success response with geotax taxonomy', () => {
-            let configuration: CategorizerConfig = {
+            const configuration: CategorizerConfig = {
                 taxonomy: "geotax",
                 language: Language.EN
             }
@@ -106,7 +106,7 @@ describe('Categorize', () => {
         })
 
         test('should have success response with emotional traits taxonomy', () => {
-            let configuration: CategorizerConfig = {
+            const configuration: CategorizerConfig = {
                 taxonomy: "emotional-traits",
                 language: Language.EN
             }

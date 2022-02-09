@@ -14,7 +14,7 @@ describe('Detection', () => {
 
     describe('Information detection with pii detector', () => {
         test('should have success response with pii detector', () => {
-            let configuration: DetectorConfig = {
+            const configuration: DetectorConfig = {
                 detector: "pii",
                 language: Language.EN
             }
@@ -27,7 +27,7 @@ describe('Detection', () => {
 
     describe('Information detection with writeprint detector', () => {
         test('should have success response with writeprint detector', () => {
-            let configuration: DetectorConfig = {
+            const configuration: DetectorConfig = {
                 detector: "writeprint",
                 language: Language.EN
             }
@@ -40,7 +40,7 @@ describe('Detection', () => {
 
     describe('Information detection with temporal-information detector', () => {
         test('should have success response with temporal-information detector', () => {
-            let configuration: DetectorConfig = {
+            const configuration: DetectorConfig = {
                 detector: "temporal-information",
                 language: Language.EN
             }

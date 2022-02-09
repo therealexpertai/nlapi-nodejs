@@ -23,7 +23,7 @@ describe('Analyze', () => {
         describe('Success Full Analyze of text', () => {
 
             test('should have successful full response with english language', () => {
-                let configuration: AnalyzerConfig = {
+                const configuration: AnalyzerConfig = {
                     context: "standard",
                     language: Language.EN
                 }
@@ -34,7 +34,7 @@ describe('Analyze', () => {
 
             test('should have successful full response with italian language', () => {
                 const text = "Roma, lunedì 3 maggio 2021 Nella giornata di ieri il Ministero della cultura ha reso noto che Milan Ingegneria S.p.A. si è aggiudicata il bando per la progettazione e realizzazione di un nuovo piano di calpestio per il Colosseo di Roma."
-                let configuration: AnalyzerConfig = {
+                const configuration: AnalyzerConfig = {
                     context: "standard",
                     language: Language.IT
                 }
@@ -45,7 +45,7 @@ describe('Analyze', () => {
 
             test('should have successful full response with spanish language', () => {
                 const text = "8 de mayo de 2021 Mapa de fragmentos del cohete chino. El cohete chino Long March 5B (Larga Marcha 5B, traducido al español) cayó en el océano Índico cerca de India y África, al oeste del archipiélago de las Maldivas"
-                let configuration: AnalyzerConfig = {
+                const configuration: AnalyzerConfig = {
                     context: "standard",
                     language: Language.ES
                 }
@@ -56,7 +56,7 @@ describe('Analyze', () => {
 
             test('should have successful full response with french language', () => {
                 const text = "La même année, elle devient membre du jury du prix Médicis."
-                let configuration: AnalyzerConfig = {
+                const configuration: AnalyzerConfig = {
                     context: "standard",
                     language: Language.FR
                 }
@@ -67,7 +67,7 @@ describe('Analyze', () => {
 
             test('should have successful full response with german language', () => {
                 const text = "An Bord der Flugzeugs waren nach Behördenangaben 62 Personen, darunter zwölf Besatzungsmitglieder und sieben Kinder."
-                let configuration: AnalyzerConfig = {
+                const configuration: AnalyzerConfig = {
                     context: "standard",
                     language: Language.DE
                 }
@@ -91,8 +91,8 @@ describe('Analyze', () => {
         describe('Deep linguistic analysis', () => {
 
             test('should have successful disambiguation response with english language', () => {
-                let text = "Michael Jordan was one of the best basketball players of all time. Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half."
-                let configuration: AnalyzerConfig = {
+                const text = "Michael Jordan was one of the best basketball players of all time. Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half."
+                const configuration: AnalyzerConfig = {
                     context: "standard",
                     language: Language.EN,
                     analysis: Analysis.Disambiguation
@@ -106,8 +106,8 @@ describe('Analyze', () => {
         describe('Keyphrase extraction analysis', () => {
 
             test('should have successful relevants response with english language', () => {
-                let text = "Michael Jordan was one of the best basketball players of all time. Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half."
-                let configuration: AnalyzerConfig = {
+                const text = "Michael Jordan was one of the best basketball players of all time. Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half."
+                const configuration: AnalyzerConfig = {
                     context: "standard",
                     language: Language.EN,
                     analysis: Analysis.Relevants
@@ -121,8 +121,8 @@ describe('Analyze', () => {
         describe('Named entities recognition analysis', () => {
 
             test('should have successful entities response with english language', () => {
-                let text = "Michael Jordan was one of the best basketball players of all time. Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half."
-                let configuration: AnalyzerConfig = {
+                const text = "Michael Jordan was one of the best basketball players of all time. Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half."
+                const configuration: AnalyzerConfig = {
                     context: "standard",
                     language: Language.EN,
                     analysis: Analysis.Entities
@@ -136,8 +136,8 @@ describe('Analyze', () => {
         describe('Relation extraction analysis', () => {
 
             test('should have successful relations response with english language', () => {
-                let text = "Michael Jordan was one of the best basketball players of all time. Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half."
-                let configuration: AnalyzerConfig = {
+                const text = "Michael Jordan was one of the best basketball players of all time. Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half."
+                const configuration: AnalyzerConfig = {
                     context: "standard",
                     language: Language.EN,
                     analysis: Analysis.Relations
@@ -151,8 +151,8 @@ describe('Analyze', () => {
         describe('Sentiment analysis', () => {
 
             test('should have successful sentiment response with english language', () => {
-                let text = "Michael Jordan was one of the best basketball players of all time. Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half."
-                let configuration: AnalyzerConfig = {
+                const text = "Michael Jordan was one of the best basketball players of all time. Scoring was Jordan's stand-out skill, but he still holds a defensive NBA record, with eight steals in a half."
+                const configuration: AnalyzerConfig = {
                     context: "standard",
                     language: Language.EN,
                     analysis: Analysis.Sentiment

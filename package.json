@@ -2,6 +2,10 @@
   "name": "expertai-nlapi",
   "version": "2.0.0",
   "description": "NodeJS client for expert.ai Natural Language API",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/therealexpertai/nlapi-nodejs"
+  },
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "scripts": {
