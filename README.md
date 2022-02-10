@@ -67,7 +67,7 @@ Use the `analyze()` method to perform all-inclusive (or "full") [document analys
 
 The structure of the returned object is described  [here](https://docs.expert.ai/nlapi/latest/reference/output/full-analysis/).
 
-***Specific/partial document analysis***
+**Specific/partial document analysis**
 
 Use the `analyze()` method with the `analysis` parameter to perform a specific/partial document analysis choosing from:
 
@@ -77,12 +77,13 @@ Use the `analyze()` method with the `analysis` parameter to perform a specific/p
 - [Relation extraction](https://docs.expert.ai/nlapi/latest/guide/relation-extraction/)
 - [Sentiment analysis](https://docs.expert.ai/nlapi/latest/guide/sentiment-analysis/)
 
-
-    nlClient.analyze("Put your text here.", {
-      language: Language.EN,
-      context: "standard",
-      analysis: Analysis.Relations
-    })
+```
+nlClient.analyze("Put your text here.", {
+  language: Language.EN,
+  context: "standard",
+  analysis: Analysis.Relations
+})
+```
 
 `Analysis` is an enum-like object with the possible specific/partial analyses:
 
@@ -100,7 +101,7 @@ The structure of the returned object is described  in these pages:
 - [`relations` analysis](https://docs.expert.ai/nlapi/latest/reference/output/relation-extraction/) (relation extraction)
 - [`sentiment` analysis](https://docs.expert.ai/nlapi/latest/reference/output/sentiment-analysis/) (sentiment analysis)
 
-***Document classification***
+**Document classification**
 
 Use the `categorize()` method to perform [document classification](https://docs.expert.ai/nlapi/latest/guide/classification/) with one of the pre-defined taxonomies.
 
@@ -115,7 +116,7 @@ In the case of the `geotax` taxonomy, the returned object has an additional `ext
 
 Use the `taxonomy()` method (see below) to get the category tree for a given taxonomy. i.e. to know about all the possible output categories.
 
-***Information detection***
+**Information detection**
 
 Use the `detect()` method to perform [information detection](https://docs.expert.ai/nlapi/latest/guide/detection/) with one of the available detectors (for example: PII, Writeprint, Temporal information)
 
