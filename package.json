@@ -1,6 +1,6 @@
 {
-  "name": "expertai-nlapi",
-  "version": "2.0.0",
+  "name": "@expertai/nlapi",
+  "version": "2.0.0-dev.20220214",
   "description": "NodeJS client for expert.ai Natural Language API",
   "repository": {
     "type": "git",
@@ -9,7 +9,9 @@
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "test": "jest",
+    "test": "npm run test:unit & npm run test:integration",
+    "test:unit": "jest --rootDir ./tests/unit",
+    "test:integration": "jest --rootDir ./tests/integration",
     "build": "tsc",
     "watch": "tsc -w",
     "codegen:nlapi": "openapi-generator-cli generate -i https://raw.githubusercontent.com/AleksandrinaKovachka/nlapi-openapi-specification/develop/dist/full_nlapi.yaml -o src/generated-sources/nlapi -g typescript-axios --additional-properties=supportsES6=true,npmVersion=6.9.0,typescriptThreePlus=true",
