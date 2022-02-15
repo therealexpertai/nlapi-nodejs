@@ -33,14 +33,35 @@ Replace `YOUR_USERNAME` with the email address you specified during registration
 
 ### Create the client
 To use this client in your code, import the `NLClient` class:
+    
+    // ES5 example
+    const { NLClient } = require("@expertai/nlapi")
 
+    // ES6+ example
     import {NLClient} from "@expertai/nlapi"
+
 
 Then create an instance of the client object:
 
     let nlClient = new NLClient()
 
 You can then invoke the object methods to use expert.ai Natural Language API.
+
+To use `Language` enum type: 
+
+    // ES5 example
+    const { Language } = require("@expertai/nlapi")
+
+    // ES6+ example
+    import { Language } from "@expertai/nlapi";
+
+To use `Analysis` enum type:
+
+    // ES5 example
+    const { Analysis } = require("@expertai/nlapi")
+
+    // ES6+ example
+    import { Analysis } from "@expertai/nlapi";
 
 ### Methods
 
@@ -53,6 +74,8 @@ Use the `analyze()` method to perform all-inclusive (or "full") [document analys
     nlClient.analyze("Put your text here.", {
       language: Language.EN,
       context: "standard"
+    }).then((result) => {
+      console.log(result.data)
     })
 
 `Language` is an enum-like object with all the possible language codes:
@@ -82,6 +105,8 @@ nlClient.analyze("Put your text here.", {
   language: Language.EN,
   context: "standard",
   analysis: Analysis.Relations
+}).then((result) => {
+  console.log(result.data)
 })
 ```
 
@@ -108,6 +133,8 @@ Use the `categorize()` method to perform [document classification](https://docs.
     nlClient.categorize("test", {
       taxonomy: "iptc",
       language: Language.EN
+    }).then((result) => {
+      console.log(result.data)
     })
 
 `taxonomy` is one of the Natural Language API [taxonomies](https://docs.expert.ai/nlapi/latest/guide/classification/). Use the `taxonomies()` method (see below) to get the list of available taxonomies together with the language they support.  
@@ -123,6 +150,8 @@ Use the `detect()` method to perform [information detection](https://docs.expert
     nlClient.detect("test", {
       language: Language.EN,
       detector: "pii"
+    }).then((result) => {
+      console.log(result.data)
     })
 
 `detector` is one of the Natural Language API [detectors](https://docs.expert.ai/nlapi/latest/guide/detection/). Use the `detectors()` method (see below) to get the list of available detectors together with the language they support.  
@@ -130,14 +159,18 @@ Follow the links [here](https://docs.expert.ai/nlapi/latest/reference/output/det
 
 **API self-documentation: contexts**
 
-    nlClient.context()
+    nlClient.context().then((result) => {
+      console.log(result)
+    })
 
 The method returns the list of available document analysis  [contexts](https://docs.expert.ai/nlapi/latest/guide/contexts-and-kg/).
 The returned object is described [here](https://docs.expert.ai/nlapi/v2/reference/output/self-documentation/?#contexts).
 
 **API self-documentation: taxonomies**
 
-    nlClient.taxonomies()
+    nlClient.taxonomies().then((result) => {
+      console.log(result)
+    })
 
 The method returns the list of available document classification 
 [taxonomies](https://docs.expert.ai/nlapi/latest/guide/classification/taxonomies-info/#list-of-available-taxonomies).
@@ -148,6 +181,8 @@ The returned object is described [here](https://docs.expert.ai/nlapi/v2/referenc
     nlClient.taxonomy({
       taxonomy: "iptc",
       language: Language.EN
+    }).then((result) => {
+      console.log(result.data)
     })
 
 The method returns the [category tree](https://docs.expert.ai/nlapi/latest/guide/classification/taxonomies-info/#category-tree) for a given taxonomy in a given language.  
@@ -156,7 +191,9 @@ The returned object is described [here](https://docs.expert.ai/nlapi/v2/referenc
 
 **API self-documentation: detectors**
 
-    nlClient.detectors()
+    nlClient.detectors().then((result) => {
+      console.log(result)
+    })
 
 The method returns the list of  [detectors](https://docs.expert.ai/nlapi/latest/guide/detection/) that can be used for information detection.
 The returned object is described [here](https://docs.expert.ai/nlapi/v2/reference/output/self-documentation/?#detectors).
