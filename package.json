@@ -1,6 +1,6 @@
 {
   "name": "@expertai/nlapi",
-  "version": "2.0.1-dev.20220728",
+  "version": "2.0.0",
   "description": "NodeJS client for expert.ai Natural Language API",
   "repository": {
     "type": "git",
