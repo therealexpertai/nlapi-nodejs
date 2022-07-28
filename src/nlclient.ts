@@ -135,8 +135,12 @@ export class NLClient{
                         return response.data
                     })
             }
+            
             default:
-                throw new Error("Unsupported detector")
+                return this._informationDetection.detectDetectorLanguagePost(configuration.detector,configuration.language, textToAnalyze)
+                .then((response:AxiosResponse) => {
+                    return response.data
+                })
         }
     }
 

@@ -460,6 +460,12 @@ export interface DetectorBaseDocument {
      */
     'knowledge'?: Array<KnowledgeEntry>;
     /**
+     * Categories
+     * @type {Array<Category>}
+     * @memberof DetectorBaseDocument
+     */
+    'categories'?: Array<Category>;
+    /**
      * Extracted information
      * @type {Array<Extraction>}
      * @memberof DetectorBaseDocument
@@ -1866,11 +1872,11 @@ export interface PIIResponse {
      */
     'success'?: boolean;
     /**
-     * Error description
-     * @type {object}
+     * 
+     * @type {ServiceError}
      * @memberof PIIResponse
      */
-    'error'?: object;
+    'error'?: ServiceError;
     /**
      * 
      * @type {DetectorBaseDocument & PIIDocument}
@@ -2661,11 +2667,11 @@ export interface TemporalInformationResponse {
      */
     'success'?: boolean;
     /**
-     * Error description
-     * @type {object}
+     * 
+     * @type {ServiceError}
      * @memberof TemporalInformationResponse
      */
-    'error'?: object;
+    'error'?: ServiceError;
     /**
      * 
      * @type {DetectorBaseDocument & TemporalInformationDocument}
@@ -2860,11 +2866,11 @@ export interface WriteprintResponse {
      */
     'success'?: boolean;
     /**
-     * Error description
-     * @type {object}
+     * 
+     * @type {ServiceError}
      * @memberof WriteprintResponse
      */
-    'error'?: object;
+    'error'?: ServiceError;
     /**
      * 
      * @type {DetectorBaseDocument & WriteprintDocument}
@@ -3949,7 +3955,54 @@ export class DocumentClassificationApi extends BaseAPI {
 export const InformationDetectionApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Information detection on the posted text
+         * @summary Information detection
+         * @param {string} detector Detector name; use the &#x60;detectors&#x60; resource to discover available detectors
+         * @param {'de' | 'en' | 'es' | 'fr' | 'it'} language Document language (code); use the &#x60;detectors&#x60; resource to discover the languages for which the detector is available
+         * @param {AnalysisRequest} [analysisRequest] The document on which to perform information detection
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        detectDetectorLanguagePost: async (detector: string, language: 'de' | 'en' | 'es' | 'fr' | 'it', analysisRequest?: AnalysisRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'detector' is not null or undefined
+            assertParamExists('detectDetectorLanguagePost', 'detector', detector)
+            // verify required parameter 'language' is not null or undefined
+            assertParamExists('detectDetectorLanguagePost', 'language', language)
+            const localVarPath = `/detect/{detector}/{language}`
+                .replace(`{${"detector"}}`, encodeURIComponent(String(detector)))
+                .replace(`{${"language"}}`, encodeURIComponent(String(language)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(analysisRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 
+         * @summary PII detection
          * @param {string} language 
          * @param {AnalysisRequest} [analysisRequest] 
          * @param {*} [options] Override http request option.
@@ -3991,6 +4044,7 @@ export const InformationDetectionApiAxiosParamCreator = function (configuration?
         },
         /**
          * 
+         * @summary Temporal information detection
          * @param {string} language 
          * @param {AnalysisRequest} [analysisRequest] 
          * @param {*} [options] Override http request option.
@@ -4032,6 +4086,7 @@ export const InformationDetectionApiAxiosParamCreator = function (configuration?
         },
         /**
          * 
+         * @summary Writeprint detection
          * @param {string} language 
          * @param {AnalysisRequest} [analysisRequest] 
          * @param {*} [options] Override http request option.
@@ -4116,7 +4171,21 @@ export const InformationDetectionApiFp = function(configuration?: Configuration)
     const localVarAxiosParamCreator = InformationDetectionApiAxiosParamCreator(configuration)
     return {
         /**
+         * Information detection on the posted text
+         * @summary Information detection
+         * @param {string} detector Detector name; use the &#x60;detectors&#x60; resource to discover available detectors
+         * @param {'de' | 'en' | 'es' | 'fr' | 'it'} language Document language (code); use the &#x60;detectors&#x60; resource to discover the languages for which the detector is available
+         * @param {AnalysisRequest} [analysisRequest] The document on which to perform information detection
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async detectDetectorLanguagePost(detector: string, language: 'de' | 'en' | 'es' | 'fr' | 'it', analysisRequest?: AnalysisRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.detectDetectorLanguagePost(detector, language, analysisRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * 
+         * @summary PII detection
          * @param {string} language 
          * @param {AnalysisRequest} [analysisRequest] 
          * @param {*} [options] Override http request option.
@@ -4128,6 +4197,7 @@ export const InformationDetectionApiFp = function(configuration?: Configuration)
         },
         /**
          * 
+         * @summary Temporal information detection
          * @param {string} language 
          * @param {AnalysisRequest} [analysisRequest] 
          * @param {*} [options] Override http request option.
@@ -4139,6 +4209,7 @@ export const InformationDetectionApiFp = function(configuration?: Configuration)
         },
         /**
          * 
+         * @summary Writeprint detection
          * @param {string} language 
          * @param {AnalysisRequest} [analysisRequest] 
          * @param {*} [options] Override http request option.
@@ -4169,7 +4240,20 @@ export const InformationDetectionApiFactory = function (configuration?: Configur
     const localVarFp = InformationDetectionApiFp(configuration)
     return {
         /**
+         * Information detection on the posted text
+         * @summary Information detection
+         * @param {string} detector Detector name; use the &#x60;detectors&#x60; resource to discover available detectors
+         * @param {'de' | 'en' | 'es' | 'fr' | 'it'} language Document language (code); use the &#x60;detectors&#x60; resource to discover the languages for which the detector is available
+         * @param {AnalysisRequest} [analysisRequest] The document on which to perform information detection
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        detectDetectorLanguagePost(detector: string, language: 'de' | 'en' | 'es' | 'fr' | 'it', analysisRequest?: AnalysisRequest, options?: any): AxiosPromise<void> {
+            return localVarFp.detectDetectorLanguagePost(detector, language, analysisRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
          * 
+         * @summary PII detection
          * @param {string} language 
          * @param {AnalysisRequest} [analysisRequest] 
          * @param {*} [options] Override http request option.
@@ -4180,6 +4264,7 @@ export const InformationDetectionApiFactory = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Temporal information detection
          * @param {string} language 
          * @param {AnalysisRequest} [analysisRequest] 
          * @param {*} [options] Override http request option.
@@ -4190,6 +4275,7 @@ export const InformationDetectionApiFactory = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Writeprint detection
          * @param {string} language 
          * @param {AnalysisRequest} [analysisRequest] 
          * @param {*} [options] Override http request option.
@@ -4218,7 +4304,22 @@ export const InformationDetectionApiFactory = function (configuration?: Configur
  */
 export class InformationDetectionApi extends BaseAPI {
     /**
+     * Information detection on the posted text
+     * @summary Information detection
+     * @param {string} detector Detector name; use the &#x60;detectors&#x60; resource to discover available detectors
+     * @param {'de' | 'en' | 'es' | 'fr' | 'it'} language Document language (code); use the &#x60;detectors&#x60; resource to discover the languages for which the detector is available
+     * @param {AnalysisRequest} [analysisRequest] The document on which to perform information detection
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InformationDetectionApi
+     */
+    public detectDetectorLanguagePost(detector: string, language: 'de' | 'en' | 'es' | 'fr' | 'it', analysisRequest?: AnalysisRequest, options?: AxiosRequestConfig) {
+        return InformationDetectionApiFp(this.configuration).detectDetectorLanguagePost(detector, language, analysisRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * 
+     * @summary PII detection
      * @param {string} language 
      * @param {AnalysisRequest} [analysisRequest] 
      * @param {*} [options] Override http request option.
@@ -4231,6 +4332,7 @@ export class InformationDetectionApi extends BaseAPI {
 
     /**
      * 
+     * @summary Temporal information detection
      * @param {string} language 
      * @param {AnalysisRequest} [analysisRequest] 
      * @param {*} [options] Override http request option.
@@ -4243,6 +4345,7 @@ export class InformationDetectionApi extends BaseAPI {
 
     /**
      * 
+     * @summary Writeprint detection
      * @param {string} language 
      * @param {AnalysisRequest} [analysisRequest] 
      * @param {*} [options] Override http request option.

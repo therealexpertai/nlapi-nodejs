@@ -401,15 +401,6 @@ describe('NLClient', () => {
 
         })
 
-        describe('unsupported', () => {
-            const wrongConfiguration = { language: Language.EN, detector: "wrong"}
-
-            test('should throw exception', () => {
-                expect(() => {
-                    client.detect("text", wrongConfiguration)
-                }).toThrow(new Error("Unsupported detector"))
-            })
-        })
     })
 
     describe('context', () => {

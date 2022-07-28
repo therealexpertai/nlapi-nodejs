@@ -1,4 +1,5 @@
 import {NLClient, DetectorConfig, Language} from "../../src";
+import successhatePiiResponse from "../mocks/detect/success-hate-response";
 import successPiiResponse from "../mocks/detect/success-pii-response";
 import successWriteprintResponse from "../mocks/detect/success-writeprint-response";
 import successTemporalInformationResponse from "../mocks/detect/success-temporal-information-response";
@@ -55,6 +56,19 @@ describe('Detection', () => {
         test('should have success response with list of the detectors', () => {
             return nlClient.detectors().then((result) => {
                 expect(result).toEqual(successDetectorsResponse)
+            })
+        })
+    })
+
+    describe('Information detection with hate speech detector', () => {
+        test('should have success response with pii detector', () => {
+            const configuration: DetectorConfig = {
+                detector: "hate-speech",
+                language: Language.EN
+            }
+
+            return nlClient.detect(text, configuration).then((result) => {
+                expect(result).toEqual(successhatePiiResponse);
             })
         })
     })
